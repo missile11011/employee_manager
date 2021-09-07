@@ -1,25 +1,27 @@
-DROP DATABASE IF EXISTS department;
-CREATE DATABASE department;
-
+DROP DATABASE IF EXISTS compony;
+CREATE DATABASE compony;
+USE compony;
 CREATE TABLE department(
-    id INT,
-    name VARCHAR(30),
-    PRIMARY KEY (id)
-)
+    id INT PRIMARY KEY,
+    name VARCHAR(30)
+);
 
 CREATE TABLE role(
-    id INT,
+    id INT PRIMARY KEY ,
     title VARCHAR(30),
     salary DECIMAL,
     department_id INT,
-    PRIMARY KEY (id)
-)
+    FOREIGN KEY (department_id)
+    REFERENCES department(id)
+);
 
 CREATE TABLE employee(
-    id INT,
+    id INT PRIMARY KEY,
     first_name VARCHAR(30),
-    Last_name VARCHAR(30),
+    last_name VARCHAR(30),
     role_id INT,
     manager_id INT,
-    PRIMARY KEY (id)
-)
+    FOREIGN KEY (role_id)
+    REFERENCES role(id)
+);
+
