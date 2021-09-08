@@ -1,7 +1,7 @@
-const Sequelzie = require("sequelize");
+const Sequelize = require("sequelize");
 require("dotenv").config();
 
-const sequelzie = new Sequelzie(
+const sequelize = new Sequelize(
     process.env.DBNAME,
     process.env.DBUSER,
     process.env.DBPASS,
@@ -11,4 +11,4 @@ const sequelzie = new Sequelzie(
         port: 3306
     }
 );
-module.exports = sequelzie;
+module.exports = sequelize;
