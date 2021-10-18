@@ -64,21 +64,6 @@ function main() {
         }
     })
     
-    // console.log(commandChoses)
-    // const {employeeChosen} = await inquirer.prompt({
-    //     name:"employeeChosen",
-    //     type:"list",
-    //     message:"delete which employee?",
-    //     choices:employees.map(employee => ({name: employee.first_name, value: employee}))
-        
-    // })
-    // console.log(command)
-    // console.log(employeeChosen);
-    // console.log(employeeChosen.first_name);
-    // console.log(employeeChosen.employeeNumber);
-    // const  [employee] = await connection.query('select * FROM employees where id = ?', employeeChosen.employeeNumber);
-    // console.log(command.action)
-    
 }
 
 const sql = "SELECT * FROM employee"
@@ -123,7 +108,6 @@ function addEmployee() {
         }
     ]).then(function(res) {
         connection.query('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)', [res.firstName, res.lastName, res.roleId, res.managerId], function(err, data) {
-            if (err) throw err;
             console.table("Successful");
             main();
         })
@@ -201,52 +185,3 @@ function updateEmployeeRole() {
     })
 
 }
-// inquirer
-// .prompt([
-//     {
-//         name: "action",
-//         type: "list",
-//         message: "Choose an action",
-//         choices: ["View all employees", "Add employee", "Update employee role", "View all roles", "Add role", "View all departments", "Add department"]
-//     }
-// ])
-// .then ((answer) => {
-//     if (answer.action === "View all employees"){
-//         console.log("TEST View all employees")
-//         viewEmployee();
-//     }
-//     if (answer.action === "Add employee"){
-//         console.log("TEST Add employee")
-//         addEmployee();
-//     }
-//     if (answer.action === "Update employee role"){
-//         console.log("TEST Update employee role")
-//         updateEmployee();
-//     }
-//     if (answer.action === "View all roles"){
-//         console.log("TEST View all roles")
-//         viewRoles();
-//     }
-//     if (answer.action === "Add role"){
-//         console.log("TEST Add role")
-//         addRoles();
-//     }
-//     if (answer.action === "View all departments"){
-//         console.log("TEST View all departments")
-//         viewDeparment();
-//     }
-//     if (answer.action === "Add department"){
-//         console.log("TEST Add department")
-//         addDeparment();
-//     }
-// });
-// const addEmployee = () =>
-//     inquirer
-//     .prompt([
-//     {
-//         name: "add_employee",
-//         type: "input",
-//         message: ""
-//     }
-// ])
-
