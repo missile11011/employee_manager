@@ -21,19 +21,29 @@ console.log(`
     ╚══════╝╚═╝     ╚═╝╚═╝     ╚══════╝ ╚═════╝    ╚═╝   ╚══════╝╚══════╝       ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
 `
 )
-async function main() {
+const db = mysql.createConnection({host:'localhost', user: 'root', password: "", database: 'compony'});
+
+function main() {
     // get the client
     // query database
-    const connection = await mysql.createConnection({host:'localhost', user: 'root', password: "rootroot", database: 'compony'});
     // const [employees] = await connection.query('SELECT first_name, id FROM employee ');
     // console.log(employees);
     
-    const {command} = await inquirer.prompt({
+    
+    inquirer.prompt({
         name:"command",
         type:"list",
         message:"Choose an action",
         choices: ["View all employees", "Add employee", "Update employee role", "View all roles", "Add role", "View all departments", "Add department"]
     })
+    .then(res => {
+        switch(res.command){
+            case "View all employees":
+                getEmployee()
+            break;
+        }
+    })
+    
     // console.log(commandChoses)
     // const {employeeChosen} = await inquirer.prompt({
     //     name:"employeeChosen",
@@ -50,8 +60,21 @@ async function main() {
     // console.log(command.action)
     
 }
-
 main()
+const sql = "SELECT * FROM employee"
+function getEmployee(){
+    db.query(sql, (err, rows) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        res.json({
+            message: 'success',
+            data: rows
+        });
+    });
+}
+
 // inquirer
 // .prompt([
 //     {
