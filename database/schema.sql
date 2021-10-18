@@ -1,6 +1,7 @@
 DROP DATABASE IF EXISTS compony;
 CREATE DATABASE compony;
 USE compony;
+
 CREATE TABLE department(
     id INT PRIMARY KEY,
     name VARCHAR(30)
@@ -22,6 +23,6 @@ CREATE TABLE employee(
     role_id INT,
     manager_id INT,
     FOREIGN KEY (role_id)
-    REFERENCES role(id)
+    REFERENCES roles(id)
 );
 
